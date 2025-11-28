@@ -1,0 +1,20 @@
+services:
+  service_a:
+    image: ghcr.io/<your github>/lab6_service_a/<whatever_name_a>:latest
+    ports:
+      - "8001:8000"
+    networks:
+      - labnet
+
+  service_b:
+    image: ghcr.io/<your github>/lab6_service_b/<whatever_name_b>:latest
+    env_file: ./.env
+    depends_on:
+      - service_a
+    ports:
+      - "8002:8000"
+    networks:
+      - labnet
+
+networks:
+  labnet:
